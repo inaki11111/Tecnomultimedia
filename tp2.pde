@@ -1,5 +1,5 @@
 PFont fuente;
-PImage presentacion, fonal, pistola,boton; //pistola=mazo
+PImage presentacion, fonal, pistola, boton, bala; //pistola=mazo
 int Px=500;
 int X, Y;
 
@@ -15,10 +15,13 @@ void setup() {
   presentacion=loadImage("presentacion.png");//imagen
   pistola=loadImage("pistola.png");//mouse
   boton=loadImage("boton.png");
+  bala=loadImage("bala.png");
+  bala.resize(50, 0);
   textMode(CENTER);
 }
 
 void draw() {
+  imageMode(CORNER);
   background(0);
   image(presentacion, 0, 0, Px, 500);
   Px--;
@@ -66,8 +69,12 @@ void draw() {
   if (Px<-850) {
     image(fonal, 0, 0, width, height);
   }
-  image(boton,450,5,50,50);
+  image(boton, 450, 5, 50, 50);
   image(pistola, mouseX, mouseY, 40, 40);
+  if (Px>0) {
+    imageMode(CENTER);
+    image(bala, random(500), random(500));
+  }
 }
 
 void mousePressed() {
